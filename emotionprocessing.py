@@ -127,6 +127,13 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        
+    def cleaning(self):
+        self.showtext.clear()
+        self.textEdit.clear()
+        self.mosbat.setValue(0)
+        self.khonsa.setValue(0)
+        self.manfi.setValue(0)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -135,6 +142,7 @@ class Ui_MainWindow(object):
         self.label.setText(_translate("MainWindow", "متن خود جهت پردازش را وارد نمایید"))
         self.browse.setText(_translate("MainWindow", "پیدا کردن فایل"))
         self.clean.setText(_translate("MainWindow", "پاکسازی"))
+        self.clean.clicked.connect(self.cleaning)
         self.mosbat_lable.setText(_translate("MainWindow", "نتیجه مثبت"))
         self.manfi_lable.setText(_translate("MainWindow", "نتیجه منفی"))
         self.label_2.setText(_translate("MainWindow", "نتیجه پردازش متن:"))
