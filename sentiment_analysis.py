@@ -158,6 +158,7 @@ class Ui_MainWindow(object):
         return y_pred
         
     def prepare(self):
+        #train and test
         stopwords = []
         file = open('stopwords.txt', encoding='utf-8').read()
         [stopwords.append(x) for x in file.split()]
@@ -202,6 +203,7 @@ class Ui_MainWindow(object):
         self.dic ={0:'مثبت',1:'منفی'}
         self.final_text=self.showtext.toPlainText()
         self.sample = tf_idf_model.transform([self.final_text]).toarray()
+        self.tf_idf_model.
         self.sentiment = self.rfc.predict(self.sample)
         self.final_text, self.dic[self.sentiment[0]]
         
