@@ -148,7 +148,6 @@ class Ui_MainWindow(object):
         tf_idf_X = tf_idf_vectorizer.fit_transform(df_X)
         tf_idf_df = pd.DataFrame(data=tf_idf_X.toarray(),columns=[tf_idf_vectorizer.get_feature_names()])
         return tf_idf_df, tf_idf_vectorizer
-
     def split_data(self,X,y,test_size):
         return train_test_split(X, y, test_size=test_size)
 
@@ -195,15 +194,16 @@ class Ui_MainWindow(object):
         self.progressBar.setValue(90)
         self.rfc_pred = self.rfc.predict(X_test)
         self.progressBar.setValue(100)
-        return tf_idf_model, dic
+        return tf_idf_model
 
 
     
-    def submit(self):
+    def submit(self,tf_idf_model):
+        self.dic ={0:'مثبت',1:'منفی'}
         self.final_text=self.showtext.toPlainText()
-        sample = tf_idf_model.transform([self.final_text]).toarray()
-        sentiment = self.rfc.predict(sample)
-        self.final_text, dic[sentiment[0]]
+        self.sample = tf_idf_model.transform([self.final_text]).toarray()
+        self.sentiment = self.rfc.predict(self.sample)
+        self.final_text, self.dic[self.sentiment[0]]
         
     def cleaning(self):
         self.showtext.clear()
