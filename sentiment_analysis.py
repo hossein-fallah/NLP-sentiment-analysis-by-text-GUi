@@ -151,13 +151,7 @@ class Ui_MainWindow(object):
     
     def split_data(self,X,y,test_size):
         return train_test_split(X, y, test_size=test_size)
-
-    def define_and_run_model(self,model,X_train,X_test,y_train):
-        clf = model
-        clf.fit(X_train, y_train)
-        y_pred = clf.predict(X_test)
-        return y_pred
-        
+ 
     def prepare(self):
         #train and test
         stopwords = []
@@ -185,10 +179,7 @@ class Ui_MainWindow(object):
         tf_idf_df, tf_idf_model = self.vectorize_tfidf(df['comment'])
         X_train, X_test, y_train, y_test = self.split_data(tf_idf_df,df['sentiment'],.3)
         self.progressBar.setValue(50)
-        from sklearn.svm import SVC
-        clf = SVC(gamma='auto')
         self.progressBar.setValue(60)
-        y_pred = self.define_and_run_model(clf,X_train,X_test,y_train)
         self.progressBar.setValue(70)
         from sklearn.ensemble import RandomForestClassifier
         self.progressBar.setValue(80)
