@@ -13,7 +13,7 @@ from nested_lookup import nested_lookup
 import json
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import confusion_matrix,classification_report,classification,accuracy_score
+#from sklearn.metrics import confusion_matrix,classification_report,classification,accuracy_score
 
 
 class Ui_MainWindow(object):
@@ -146,7 +146,7 @@ class Ui_MainWindow(object):
     def vectorize_tfidf(self,df_X):
         tf_idf_vectorizer = TfidfVectorizer(lowercase=False)
         tf_idf_X = tf_idf_vectorizer.fit_transform(df_X)
-        tf_idf_df = pd.DataFrame(data=tf_idf_X.toarray(),columns=[tf_idf_vectorizer.get_feature_names()])
+        tf_idf_df = pd.DataFrame(data=tf_idf_X.toarray(),columns=[tf_idf_vectorizer.get_feature_names_out()])
         return tf_idf_df, tf_idf_vectorizer
     
     def split_data(self,X,y,test_size):
